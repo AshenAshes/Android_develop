@@ -2,6 +2,7 @@ package com.example.helloworld;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import java.io.IOException;
@@ -10,8 +11,11 @@ import pl.droidsonroids.gif.GifImageView;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.example.helloworld.recyclerview.RecyclerViewActivity;
 
 public class MainActivity extends AppCompatActivity {
     GifImageView giv;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         giv = findViewById(R.id.giv1);
         RadioGroup radGroup = findViewById(R.id.radioGroup);
+        Button nextBtn = findViewById(R.id.nextBtn);
         initGiv1();
         radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -46,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("checkChangeResult:", "Shy");
                     initGiv4();
                 }
+            }
+        });
+
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this, RecyclerViewActivity.class);
+                startActivity(intent);
             }
         });
     }
