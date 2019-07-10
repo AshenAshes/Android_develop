@@ -1,116 +1,80 @@
 package com.example.helloworld;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.text.SpannableString;
+import android.util.Log;
+import android.view.View;
 
-import java.io.IOException;
+import com.example.helloworld.recyclerview.RecyclerViewActivity;
+import com.google.android.material.tabs.TabLayout;
+
+import com.example.helloworld.fragment.FragmentHelloWorld;
+import com.example.helloworld.fragment.FragmentPropertyAnimation;
+import com.example.helloworld.fragment.FragmentSeekBar;
+
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
-import com.example.helloworld.recyclerview.RecyclerViewActivity;
-
-public class MainActivity extends AppCompatActivity {
-    GifImageView giv;
-    GifDrawable gifDrawable;
+public class MainActivity extends AppCompatActivity implements FragmentHelloWorld.helloInterface {
+    private static final int PAGE_COUNT=3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        giv = findViewById(R.id.giv1);
-        RadioGroup radGroup = findViewById(R.id.radioGroup);
-        Button nextBtn = findViewById(R.id.nextBtn);
-        initGiv1();
-        radGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        ViewPager pager = findViewById(R.id.view_pager);
+        TabLayout tableLayout = findViewById(R.id.tab_layout);
+
+        final FragmentHelloWorld frag=new FragmentHelloWorld();
+        frag.setInterface(this);
+
+        pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                Log.d("checkChange:", "RadioBtn Changed!");
-                RadioButton radbtn = findViewById(checkedId);
-                if(radbtn.getText().toString().equals("Dance")){
-                    Log.d("checkChangeResult:", "Dance");
-                    initGiv1();
-                }
-                else if(radbtn.getText().toString().equals("Pull")){
-                    Log.d("checkChangeResult:", "Pull");
-                    initGiv2();
-                }
-                else if(radbtn.getText().toString().equals("Happy")){
-                    Log.d("checkChangeResult:", "Happy");
-                    initGiv3();
-                }
-                else if(radbtn.getText().toString().equals("Shy")){
-                    Log.d("checkChangeResult:", "Shy");
-                    initGiv4();
-                }
+            public Fragment getItem(int position) {
+                if(position==0)
+                    return frag;
+                else if(position==1)
+                    return new FragmentPropertyAnimation();
+                else
+                    return new FragmentSeekBar();
             }
-        });
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this, RecyclerViewActivity.class);
-                startActivity(intent);
+            public int getCount() {
+                return PAGE_COUNT;
             }
+
+            @Override
+            public CharSequence getPageTitle(int position){
+                if(position==0)
+                    return "HelloWorld";
+                else if(position==1)
+                    return "Property Animation";
+                else
+                    return "SeekBar";
+            }
+//            SpannableString
         });
+        tableLayout.setupWithViewPager(pager);
     }
 
-    private void initGiv1() {
-        try {
-            gifDrawable = new GifDrawable(getResources(), R.drawable.dance);
-            giv.setImageDrawable(gifDrawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+//        super.onSaveInstanceState(outState, outPersistentState);
+//    }
 
-    private void initGiv2() {
-        try {
-            gifDrawable = new GifDrawable(getResources(), R.drawable.pull);
-            giv.setImageDrawable(gifDrawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initGiv3() {
-        try {
-            gifDrawable = new GifDrawable(getResources(), R.drawable.star);
-            giv.setImageDrawable(gifDrawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void initGiv4() {
-        try {
-            gifDrawable = new GifDrawable(getResources(), R.drawable.shy);
-            giv.setImageDrawable(gifDrawable);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void startClick(View v) {
-        Log.d("checkGifCdnChange:", "start");
-        gifDrawable.start();
-    }
-
-    public void stopClick(View v) {
-        Log.d("checkGifCdnChange:", "stop");
-        gifDrawable.stop();
-    }
-
-    public void resetClick(View v) {
-        Log.d("checkGifCdnChange:", "reset");
-        gifDrawable.reset();
+    @Override
+    public void jumpToActivity() {
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
+        startActivity(intent);
     }
 }
