@@ -1,6 +1,5 @@
 package com.example.helloworld.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,7 +27,7 @@ public class FragmentHelloWorld extends Fragment {
     public interface helloInterface{
         void jumpToActivity();
     }
-    helloInterface mInterface;
+    static helloInterface mInterface;
     public void setInterface(helloInterface mInter) {
         mInterface = mInter;
     }
@@ -36,6 +35,7 @@ public class FragmentHelloWorld extends Fragment {
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d("fragHelloWorld:","onCreateView");
         final View view = inflater.inflate(R.layout.fragment_helloworld, container, false);
 
         giv = view.findViewById(R.id.giv1);

@@ -9,25 +9,21 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
-import android.text.SpannableString;
 import android.util.Log;
-import android.view.View;
 
 import com.example.helloworld.recyclerview.RecyclerViewActivity;
 import com.google.android.material.tabs.TabLayout;
 
 import com.example.helloworld.fragment.FragmentHelloWorld;
-import com.example.helloworld.fragment.FragmentPropertyAnimation;
-import com.example.helloworld.fragment.FragmentSeekBar;
-
-import pl.droidsonroids.gif.GifDrawable;
-import pl.droidsonroids.gif.GifImageView;
+import com.example.helloworld.fragment.FragmentAnimation;
+import com.example.helloworld.fragment.FragmentClock;
 
 public class MainActivity extends AppCompatActivity implements FragmentHelloWorld.helloInterface {
     private static final int PAGE_COUNT=3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Log.d("main:0","onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -35,7 +31,14 @@ public class MainActivity extends AppCompatActivity implements FragmentHelloWorl
         TabLayout tableLayout = findViewById(R.id.tab_layout);
 
         final FragmentHelloWorld frag=new FragmentHelloWorld();
-        frag.setInterface(this);
+
+        //for test
+        if(frag!=null){
+            frag.setInterface(this);
+            Log.d("main:","new FragmentHelloWorld works well");
+        }
+        else
+            Log.d("main:","new FragmentHelloWorld returns null value");
 
         pager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -43,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements FragmentHelloWorl
                 if(position==0)
                     return frag;
                 else if(position==1)
-                    return new FragmentPropertyAnimation();
+                    return new FragmentAnimation();
                 else
-                    return new FragmentSeekBar();
+                    return new FragmentClock();
             }
 
             @Override
@@ -58,19 +61,19 @@ public class MainActivity extends AppCompatActivity implements FragmentHelloWorl
                 if(position==0)
                     return "HelloWorld";
                 else if(position==1)
-                    return "Property Animation";
+                    return "Animation";
                 else
-                    return "SeekBar";
+                    return "Clock";
             }
 //            SpannableString
         });
         tableLayout.setupWithViewPager(pager);
     }
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-//        super.onSaveInstanceState(outState, outPersistentState);
-//    }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
 
     @Override
     public void jumpToActivity() {
