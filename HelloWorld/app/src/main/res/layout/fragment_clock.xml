@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/clock_background">
 
-    <com.example.helloworld.widget.clock
+    <com.example.helloworld.widget.Clock
         android:id="@+id/clock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

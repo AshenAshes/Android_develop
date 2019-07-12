@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.helloworld.R;
-import com.example.helloworld.widget.clock;
+import com.example.helloworld.widget.Clock;
 
 import java.lang.ref.WeakReference;
 
@@ -21,14 +21,12 @@ public class FragmentClock extends Fragment {
     private static final int UPDATE_TIME=1;
 
     private View mRootView;
-    private static clock mClockView;
+    private static Clock mClockView;
     private Handler myHandler = new myHandler(this);
 
     private static class myHandler extends Handler{
         WeakReference<Fragment> mFragmentReference;
-        myHandler(Fragment fragment){
-            mFragmentReference = new WeakReference<>(fragment);
-        }
+        myHandler(Fragment fragment) { mFragmentReference = new WeakReference<>(fragment); }
 
         @Override
         public void handleMessage(@NonNull Message msg) {

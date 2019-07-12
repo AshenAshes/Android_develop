@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class clock extends View {
+public class Clock extends View {
     private static final int FULL_ANGLE=360;
     private static final int HOURS_STEP_ANGLE=30;
     private static final int DEPART_ANGLE=30;
@@ -41,17 +41,17 @@ public class clock extends View {
     private float CENTER_INNER_WIDTH;
     private float CENTER_OUTER_WIDTH;
 
-    public clock(Context context) {
+    public Clock(Context context) {
         super(context);
         init(context, null);
     }
 
-    public clock(Context context, @Nullable AttributeSet attrs) {
+    public Clock(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context, null);
     }
 
-    public clock(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public Clock(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, null);
     }
