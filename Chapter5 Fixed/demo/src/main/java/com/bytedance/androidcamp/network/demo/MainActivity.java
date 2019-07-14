@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         ImageHelper.displayWebImage(url, ivOut);
     }
 
-
     public void testHttpURLConnectionSync(View view) {
         // TODO 4: Fix crash of NetworkOnMainThreadException
         //AsyncTask
