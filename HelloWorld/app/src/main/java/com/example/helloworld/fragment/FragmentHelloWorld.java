@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -23,6 +24,7 @@ import pl.droidsonroids.gif.GifImageView;
 public class FragmentHelloWorld extends Fragment {
     GifImageView giv;
     GifDrawable gifDrawable;
+    ImageView aa;
 
     public interface helloInterface{
         void jumpToActivity();

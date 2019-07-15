@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dou</string>
+    <string name="app_name">dou</string>
     <string name="request_data">request data</string>
     <string name="requesting">requesting…</string>
     <string name="select_an_image">select an image</string>

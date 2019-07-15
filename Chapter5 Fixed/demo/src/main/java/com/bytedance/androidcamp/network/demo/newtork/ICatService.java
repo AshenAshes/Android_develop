@@ -12,4 +12,4 @@ public interface ICatService {
 
     @GET(PATH)
     Call<List<Cat>> randomCat(@Query("limit") int limit);
-}I
+}
