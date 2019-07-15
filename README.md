@@ -25,9 +25,14 @@ Remove branch viewPager.
 
 &emsp;
 
-**Day5: branch clock+ch5**
+**Day5: branch clock+ch5(updated and removed later)**
 
 Based on the ch5Demo teacher gives, bugs are fixed and project is put on the new folder Chapter5 Fixed.
 
 (It seems some errors existing when I installed the app using last commit, so I replace the project and upload again.)
 
+&emsp;
+
+**Day6: branch day6**
+
+Based on day5, add the folder "todolist". This homework is about the local database;
