@@ -36,3 +36,9 @@ Based on the ch5Demo teacher gives, bugs are fixed and project is put on the new
 **Day6: branch day6**
 
 Based on day5, add the folder "todolist". This homework is about the local database;
+
+&emsp;
+
+**Day7: branch day6**
+
+I'm lazy of changing branch, just that. Day7 I add the homework of permission part. The video part is in the repositor "temp".
